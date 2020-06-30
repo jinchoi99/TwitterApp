@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ public class TimelineActivity extends AppCompatActivity {
     public static final String TAG = "TimelineActivity";
 
     TwitterClient client;
+    RecyclerView rvTweets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,15 @@ public class TimelineActivity extends AppCompatActivity {
 
         //instantiate TwitterClient
         client = TwitterApp.getRestClient(this);
+
+        //Find the Recycler View
+        rvTweets = findViewById(R.id.rvTweets);
+
+        //Init the list of tweets and adapter
+
+        //Configure Recycler View
+        //Recycler View setup: layout manager and the adapter
+
         populateHomeTimeline();
 
 
