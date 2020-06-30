@@ -46,6 +46,8 @@ public class TwitterClient extends OAuthBaseClient {
 	// DEFINE METHODS for different API endpoints here
 	//Make api request to fetch data
 	public void getHomeTimeline(JsonHttpResponseHandler handler) {
+		//https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-home_timeline
+		//https://api.twitter.com/1.1/statuses/home_timeline.json
 		String apiUrl = getApiUrl("statuses/home_timeline.json");
 		// Can specify query string params directly or through RequestParams.
 		RequestParams params = new RequestParams();

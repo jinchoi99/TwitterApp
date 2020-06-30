@@ -20,6 +20,7 @@ public class TimelineActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
 
+        //instantiate TwitterClient
         client = TwitterApp.getRestClient(this);
         populateHomeTimeline();
 
@@ -27,6 +28,7 @@ public class TimelineActivity extends AppCompatActivity {
     }
 
     private void populateHomeTimeline() {
+        //call method that makes api request
         client.getHomeTimeline(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
