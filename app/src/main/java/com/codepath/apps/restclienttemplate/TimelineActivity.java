@@ -6,7 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Headers;
 
@@ -16,6 +20,8 @@ public class TimelineActivity extends AppCompatActivity {
 
     TwitterClient client;
     RecyclerView rvTweets;
+    List<Tweet> tweets;
+    TweetsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +35,8 @@ public class TimelineActivity extends AppCompatActivity {
         rvTweets = findViewById(R.id.rvTweets);
 
         //Init the list of tweets and adapter
+        tweets = new ArrayList<>();
+        adapter = new TweetsAdapter(this, tweets);
 
         //Configure Recycler View
         //Recycler View setup: layout manager and the adapter
