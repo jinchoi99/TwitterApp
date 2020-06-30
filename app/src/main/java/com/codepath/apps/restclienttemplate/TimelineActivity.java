@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -40,6 +41,8 @@ public class TimelineActivity extends AppCompatActivity {
 
         //Configure Recycler View
         //Recycler View setup: layout manager and the adapter
+        rvTweets.setLayoutManager(new LinearLayoutManager(this));
+        rvTweets.setAdapter(adapter);
 
         populateHomeTimeline();
 
