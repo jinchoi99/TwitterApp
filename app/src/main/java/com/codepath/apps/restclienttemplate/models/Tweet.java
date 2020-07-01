@@ -33,7 +33,7 @@ public class Tweet {
         JSONObject entity = jsonObject.getJSONObject("entities");
         if(entity.has("media")){
             JSONArray mediaArray = entity.getJSONArray("media");
-            if(mediaArray != null && mediaArray.length()!=0){
+            if(mediaArray != null){
                 tweet.hasEntities = true;
                 tweet.entityUrl = mediaArray.getJSONObject(0).getString("media_url_https");
             }
