@@ -111,6 +111,11 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        String[] num = relativeDate.split(" ");
+        relativeDate = num[0] + num[1].charAt(0);
+        if(num[1].charAt(0) == '0'){
+            relativeDate = "Now";
+        }
         return relativeDate;
     }
 }
