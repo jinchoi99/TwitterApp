@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 public class ComposeActivity extends AppCompatActivity {
 
+    public static final int MAX_TWEET_LENGTH = 280;
+
     EditText etCompose;
     Button btnTweet;
 
@@ -34,10 +36,11 @@ public class ComposeActivity extends AppCompatActivity {
                     return; //return before calling api
                 }
                 //error when tweet is too long
-                if(tweetContent.length() > 140){
+                if(tweetContent.length() > MAX_TWEET_LENGTH){
                     Toast.makeText(ComposeActivity.this, "Sorry, your tweet is too long!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                Toast.makeText(ComposeActivity.this, tweetContent, Toast.LENGTH_SHORT).show();
                 // 2. Make an API call to Twitter to publish the tweet
             }
         });
