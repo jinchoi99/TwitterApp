@@ -47,7 +47,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
         //Bind the tweet with view holder
         holder.bind(tweet);
-        
+
     }
 
     @Override
@@ -68,13 +68,13 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     }
 
     //Define a viewholder
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProfileImage;
         TextView tvBody;
         TextView tvScreenName;
         TextView tvTimeStamp;
         TextView tvUserName;
-
+        ImageView ivEmbeddedImage;
 
         //itemView represents one row in the recycler view = a single tweet
         public ViewHolder(@NonNull View itemView) {
@@ -84,6 +84,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvTimeStamp = itemView.findViewById(R.id.tvTimeStamp);
             tvUserName = itemView.findViewById(R.id.tvUserName);
+            ivEmbeddedImage = itemView.findViewById(R.id.ivEmbeddedImage);
         }
 
         public void bind(Tweet tweet) {
@@ -91,9 +92,16 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvBody.setText(tweet.body);
             tvScreenName.setText("@" + tweet.user.screenName);
             Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
-
             String relativeTimeAgo = getRelativeTimeAgo(tweet.createdAt);
             tvTimeStamp.setText(relativeTimeAgo);
+            //display embedded image when there exists one
+            if(tweet.hasEntities){
+                ivEmbeddedImage.setVisibility(View.VISIBLE);
+                Glide.with(context).load(tweet.entityUrl).into(ivEmbeddedImage);
+            }
+            else{
+                ivEmbeddedImage.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -113,9 +121,44 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         }
         String[] num = relativeDate.split(" ");
         relativeDate = num[0] + num[1].charAt(0);
-        if(num[1].charAt(0) == '0'){
+        if (num[1].charAt(0) == '0') {
             relativeDate = "Now";
         }
         return relativeDate;
     }
+
+//    public String getRelativeTimeAgo(String rawJsonDate) {
+//        String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
+//        SimpleDateFormat sf = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
+//        sf.setLenient(true);
+//
+//        try {
+//            long time = sf.parse(rawJsonDate).getTime();
+//            long now = System.currentTimeMillis();
+//
+//            final long diff = now - time;
+//            if (diff < MINUTE_MILLIS) {
+//                return "just now";
+//            } else if (diff < 2 * MINUTE_MILLIS) {
+//                return "a minute ago";
+//            } else if (diff < 50 * MINUTE_MILLIS) {
+//                return diff / MINUTE_MILLIS + " m";
+//            } else if (diff < 90 * MINUTE_MILLIS) {
+//                return "an hour ago";
+//            } else if (diff < 24 * HOUR_MILLIS) {
+//                return diff / HOUR_MILLIS + " h";
+//            } else if (diff < 48 * HOUR_MILLIS) {
+//                return "yesterday";
+//            } else {
+//                return diff / DAY_MILLIS + " d";
+//            }
+//
+//            // Grab the index of the first space in the returned relative data string
+//        } catch (ParseException e) {
+//            Log.i(TAG, "getRelativeTimeAgo failed");
+//            e.printStackTrace();
+//        }
+//
+//        return "";
+//    }
 }

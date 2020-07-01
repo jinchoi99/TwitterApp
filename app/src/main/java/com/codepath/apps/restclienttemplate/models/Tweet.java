@@ -13,6 +13,8 @@ public class Tweet {
     public String body;
     public String createdAt;
     public long  id;
+    public boolean hasEntities;
+    public String entityUrl;
     public User user;
 
     // empty constructor needed by the Parceler library
@@ -23,9 +25,19 @@ public class Tweet {
         tweet.body = jsonObject.getString("text");
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.id = jsonObject.getLong("id");
+        tweet.hasEntities = false;
         //user is of type User, but .getJSONObject returns JSONObject,
         // so we need to convert to User object by making a method fromJson in User class
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+
+        JSONObject entity = jsonObject.getJSONObject("entities");
+        if(entity.has("media")){
+            JSONArray mediaArray = entity.getJSONArray("media");
+            if(mediaArray != null && mediaArray.length()!=0){
+                tweet.hasEntities = true;
+                tweet.entityUrl = mediaArray.getJSONObject(0).getString("media_url_https");
+            }
+        }
         return tweet;
     }
 
