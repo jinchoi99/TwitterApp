@@ -111,7 +111,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             ivLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ivLike.setColorFilter(ContextCompat.getColor(context,R.color.twitter_blue));
+                    ivLike.setColorFilter(ContextCompat.getColor(context,R.color.inline_action_like));
                 }
             });
         }
