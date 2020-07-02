@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="5dp">
 
     <ImageView
@@ -68,4 +68,38 @@
         android:layout_marginTop="10dp"
         app:srcCompat="@android:color/black" />
 
+    <ImageView
+        android:id="@+id/ivReply"
+        android:layout_width="25dp"
+        android:layout_height="27dp"
+        android:layout_below="@+id/ivEmbeddedImage"
+        android:layout_alignParentStart="false"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="75dp"
+        android:layout_toStartOf="@+id/ivRetweet"
+        android:tint="@color/light_gray"
+        app:srcCompat="@drawable/ic_reply" />
+
+    <ImageView
+        android:id="@+id/ivRetweet"
+        android:layout_width="25dp"
+        android:layout_height="24dp"
+        android:layout_below="@+id/ivEmbeddedImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:tint="@color/light_gray"
+        app:srcCompat="@drawable/ic_vector_retweet" />
+
+    <ImageView
+        android:id="@+id/ivLike"
+        android:layout_width="27dp"
+        android:layout_height="23dp"
+        android:layout_below="@+id/ivEmbeddedImage"
+        android:layout_alignParentEnd="false"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/ivRetweet"
+        android:tint="@color/light_gray"
+        app:srcCompat="@drawable/ic_vector_heart" />
 </RelativeLayout>
