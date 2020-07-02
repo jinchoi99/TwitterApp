@@ -15,7 +15,7 @@
         app:counterMaxLength="280">
 
         <EditText
-            android:id="@+id/etCompose"
+            android:id="@+id/etComposeReply"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"

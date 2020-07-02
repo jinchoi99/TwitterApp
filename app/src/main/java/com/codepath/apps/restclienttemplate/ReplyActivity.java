@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 public class ReplyActivity extends AppCompatActivity {
 
-    EditText etCompose;
+    EditText etComposeReply;
     Button btnReply;
 
     @Override
@@ -25,10 +25,10 @@ public class ReplyActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(getDrawable(R.drawable.ic_logo));
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
-        etCompose = findViewById(R.id.etCompose);
+        etComposeReply = findViewById(R.id.etComposeReply);
         btnReply = findViewById(R.id.btnReply);
 
-        etCompose.setText(getIntent().getStringExtra("username"));
+        etComposeReply.setText(getIntent().getStringExtra("username"));
 
         btnReply.setOnClickListener(new View.OnClickListener() {
             @Override
