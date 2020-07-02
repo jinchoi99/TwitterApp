@@ -106,6 +106,13 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                     return;
                 }
                 });
+
+            ivLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ivLike.setColorFilter(R.color.twitter_blue);
+                }
+            });
         }
 
         public void bind(Tweet tweet) {
