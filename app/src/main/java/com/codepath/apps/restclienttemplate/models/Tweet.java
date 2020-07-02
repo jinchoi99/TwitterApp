@@ -1,5 +1,11 @@
 package com.codepath.apps.restclienttemplate.models;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,12 +15,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Parcel
+@Entity(foreignKeys = @ForeignKey(entity=User.class, parentColumns="id", childColumns="userId"))
+
 public class Tweet {
+
+    @ColumnInfo
+    @PrimaryKey
+    public long id;
+
+    @ColumnInfo
     public String body;
+
+    @ColumnInfo
     public String createdAt;
-    public long  id;
+
     public boolean hasEntities;
     public String entityUrl;
+
+    @ColumnInfo
+    public long userId;
+
+    @Ignore
     public User user;
 
     // empty constructor needed by the Parceler library
@@ -26,9 +47,10 @@ public class Tweet {
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.id = jsonObject.getLong("id");
         tweet.hasEntities = false;
-        //user is of type User, but .getJSONObject returns JSONObject,
-        // so we need to convert to User object by making a method fromJson in User class
-        tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+
+        User user = User.fromJson(jsonObject.getJSONObject("user"));
+        tweet.user = user;
+        tweet.userId = user.id;
 
         JSONObject entity = jsonObject.getJSONObject("entities");
         if(entity.has("media")){
