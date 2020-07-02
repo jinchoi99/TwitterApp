@@ -3,6 +3,8 @@ package com.codepath.apps.restclienttemplate;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
@@ -32,6 +34,12 @@ public class ComposeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().setTitle("Twitter");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ff1da1f2")));
+        getSupportActionBar().setLogo(getDrawable(R.drawable.ic_logo));
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compose);
 

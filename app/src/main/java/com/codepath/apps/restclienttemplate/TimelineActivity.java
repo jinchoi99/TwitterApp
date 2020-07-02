@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcel;
@@ -50,6 +52,13 @@ public class TimelineActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().setTitle("Twitter");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ff1da1f2")));
+        getSupportActionBar().setLogo(getDrawable(R.drawable.ic_logo));
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
 
