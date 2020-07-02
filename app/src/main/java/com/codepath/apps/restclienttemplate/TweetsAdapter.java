@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,6 +76,9 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvTimeStamp;
         TextView tvUserName;
         ImageView ivEmbeddedImage;
+        ImageView ivReply;
+        ImageView ivRetweet;
+        ImageView ivLike;
 
         //itemView represents one row in the recycler view = a single tweet
         public ViewHolder(@NonNull View itemView) {
@@ -85,6 +89,23 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvTimeStamp = itemView.findViewById(R.id.tvTimeStamp);
             tvUserName = itemView.findViewById(R.id.tvUserName);
             ivEmbeddedImage = itemView.findViewById(R.id.ivEmbeddedImage);
+            ivReply = itemView.findViewById(R.id.ivReply);
+            ivRetweet = itemView.findViewById(R.id.ivRetweet);
+            ivLike = itemView.findViewById(R.id.ivLike);
+
+            ivReply.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        Tweet rtweet = tweets.get(position);
+                        Intent intent = new Intent(context, ReplyActivity.class);
+                        intent.putExtra("username", "@" + rtweet.user.screenName);
+                        context.startActivity(intent);
+                    }
+                    return;
+                }
+                });
         }
 
         public void bind(Tweet tweet) {
@@ -103,6 +124,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 ivEmbeddedImage.setVisibility(View.GONE);
             }
         }
+
+
     }
 
     // getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");

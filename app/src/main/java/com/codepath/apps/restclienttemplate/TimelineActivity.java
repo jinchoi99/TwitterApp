@@ -60,7 +60,6 @@ public class TimelineActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(getDrawable(R.drawable.ic_logo));
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
 
